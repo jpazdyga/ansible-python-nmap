@@ -1,0 +1,13 @@
+---
+- hosts: ci01
+  tasks:
+    - name: Yum update
+      ##      This functionality is currently waiting to be merged (https://github.com/ansible/ansible-modules-core/pull/451)
+      ##      yum: name=* state=latest exclude=kernel*,puppet,facter,php*,augeas*,xapian*,npm*,node*,gluster*,mysql*,Maria* update_cache=true
+      ##      using shell module instead:
+      shell: sudo yum -y update -x kernel*,puppet,facter,php*,augeas*,xapian*,npm*,node*,gluster*,mysql*,Maria*,srvadmin*,dell*,google*
+                
+- hosts: ciexec
+  tasks:
+    - name: Yum update
+      shell: sudo yum -y update -x kernel*,puppet,facter,php*,augeas*,xapian*,npm*,node*,gluster*,mysql*,Maria*,srvadmin*,dell*,google*
